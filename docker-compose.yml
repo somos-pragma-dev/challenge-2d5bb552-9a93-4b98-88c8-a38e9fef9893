@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  credit_originator:
+    build:
+      context:.
+      dockerfile: Dockerfile
+    ports:
+      - '50051:50051'
+  antifraud_engine:
+    build:
+      context:.
+      dockerfile: Dockerfile
+    ports:
+      - '50052:50052'
+  core_banking:
+    build:
+      context:.
+      dockerfile: Dockerfile
+    ports:
+      - '50053:50053'

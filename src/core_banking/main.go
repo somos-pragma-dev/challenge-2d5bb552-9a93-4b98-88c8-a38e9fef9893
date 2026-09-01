@@ -1,0 +1,29 @@
+package main
+
+import (
+	"context"
+	"log"
+
+	"google.golang.org/grpc"
+	pb "github.com/fintech/core_banking/proto"
+)
+
+func main() {
+	lis, err := net.Listen("tcp", ":50053")
+	if err!= nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	s := grpc.NewServer()
+	pb.RegisterCoreBankingServer(s, &server{})
+	log.Printf("server listening at %v", lis.Addr())
+	if err := s.Serve(lis); err!= nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+}
+
+type server struct {}
+
+func (s *server) ProcessTransaction(ctx context.Context, req *pb.TransactionRequest) (*pb.TransactionResponse, error) {
+	// Implementar lógica de procesamiento de transacción
+	return &pb.TransactionResponse{}, nil
+}

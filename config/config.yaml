@@ -1,0 +1,10 @@
+services:
+  credit_originator:
+    host: localhost
+    port: 50051
+  antifraud_engine:
+    host: localhost
+    port: 50052
+  core_banking:
+    host: localhost
+    port: 50053
